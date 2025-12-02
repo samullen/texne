@@ -32,7 +32,6 @@ defmodule TexneWeb.ConnCase do
   end
 
   setup tags do
-    Texne.DataCase.setup_sandbox(tags)
     {:ok, conn: Phoenix.ConnTest.build_conn()}
   end
 end

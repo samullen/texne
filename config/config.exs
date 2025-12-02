@@ -8,7 +8,6 @@
 import Config
 
 config :texne,
-  ecto_repos: [Texne.Repo],
   generators: [timestamp_type: :utc_datetime]
 
 # Configures the endpoint

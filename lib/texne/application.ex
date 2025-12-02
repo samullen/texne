@@ -9,7 +9,6 @@ defmodule Texne.Application do
   def start(_type, _args) do
     children = [
       TexneWeb.Telemetry,
-      Texne.Repo,
       {DNSCluster, query: Application.get_env(:texne, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: Texne.PubSub},
       # Start a worker by calling: Texne.Worker.start_link(arg)
