@@ -2,6 +2,7 @@ import Config
 
 Dotenvy.source!([
   Path.expand("./.env"),
+  System.get_env()
 ])
 
 # config/runtime.exs is executed for all environments, including
