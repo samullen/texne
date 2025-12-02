@@ -3,10 +3,12 @@ defmodule Texne.AIs.Grok do
 
   def ask(query, fun \\ nil) do
     api_key = Application.get_env(:texne, :grok_api_key)
+
     headers = [
       {"Content-Type", "application/json"},
       {"Authorization", "Bearer #{api_key}"}
     ]
+
     results =
       query
       |> Texne.Pinecone.query()
@@ -14,8 +16,16 @@ defmodule Texne.AIs.Grok do
 
     attrs = %{
       messages: [
-        %{role: "system", content: "You are a helpful assistant who knows everything about what Samuel Mullen has written on his blog."},
-        %{role: "user", content: "Here are three articles in JSON format that Samuel Mullen has written:\n#{results} including the title, text, and url of each article. Use the above articles (and no other info) to answer the following query: #{query}. Respond with markdown and two newline characters to separate paragraphs, but don't bother with headers, and include links to the articles you used where relevant."}
+        %{
+          role: "system",
+          content:
+            "You are a helpful assistant who knows everything about what Samuel Mullen has written on his blog."
+        },
+        %{
+          role: "user",
+          content:
+            "Here are three articles in JSON format that Samuel Mullen has written:\n#{results} including the title, text, and url of each article. Use the above articles (and no other info) to answer the following query: #{query}. Respond with markdown and two newline characters to separate paragraphs, but don't bother with headers, and include links to the articles you used where relevant."
+        }
       ],
       model: "grok-4-0709",
       temperature: 0.2,
@@ -25,7 +35,12 @@ defmodule Texne.AIs.Grok do
       }
     }
 
-    resp = Req.post!("#{@base_url}/chat/completions", json: attrs, headers: headers, receive_timeout: 30_000, into: &(response_handler(&1, &2, fun)))
+    Req.post!("#{@base_url}/chat/completions",
+      json: attrs,
+      headers: headers,
+      receive_timeout: 30_000,
+      into: &response_handler(&1, &2, fun)
+    )
   end
 
   defp response_handler({:data, data}, {req, resp}, nil) do

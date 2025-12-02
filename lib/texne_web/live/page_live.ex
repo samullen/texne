@@ -29,13 +29,13 @@ defmodule TexneWeb.PageLive do
       |> assign(:question, question)
       |> assign(:running, true)
       |> start_async(:data_stream, fn ->
-        Grok.ask(question, &(stream_response(&1, pid)))
+        Grok.ask(question, &stream_response(&1, pid))
       end)
 
     {:noreply, socket}
   end
 
-  def handle_async(:data_stream, {:ok, data}, socket) do
+  def handle_async(:data_stream, _result, socket) do
     socket =
       socket
       |> assign(:running, false)
@@ -53,6 +53,7 @@ defmodule TexneWeb.PageLive do
   @impl true
   def handle_info({:render_response_chunk, chunk}, socket) do
     answer = socket.assigns.answer <> chunk
+
     socket =
       socket
       |> assign(:answer, answer)
@@ -60,5 +61,4 @@ defmodule TexneWeb.PageLive do
 
     {:noreply, assign(socket, :answer, answer)}
   end
-
 end

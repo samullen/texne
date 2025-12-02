@@ -41,8 +41,7 @@ window.addEventListener("phx:page-loading-stop", _info => topbar.hide())
 window.addEventListener("phx:answer_update", (e) => {
   console.log("Answer updated:", e.detail)
 
-  document.getElementById("answer").innerHTML =
-    marked.parse(e.detail.answer);
+  document.getElementById("answer").innerHTML = marked.parse(e.detail.answer);
 })
 
 // connect if there are any LiveViews on the page
