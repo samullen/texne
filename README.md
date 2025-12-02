@@ -6,9 +6,9 @@ database, and submit them to Grok to answer the user's question.
 ```mermaid
 sequenceDiagram
   User->>Texne: Asks a question
-  Text-->>User: Show "asking..." display
+  Texne-->>User: Show "asking..." display
   Texne->>Pinecone: Queries DB with user's question
-  Pinecone->>Texne: Responds with 3 articles matching query
+  Pinecone-->>Texne: Responds with 3 articles matching query
   Texne->>Grok: Asks grok user question including 3 articles
   Grok->>Texne: Reponds with results
   Texne->>User: Displays Grok's response
