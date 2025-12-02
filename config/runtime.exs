@@ -25,7 +25,9 @@ if System.get_env("PHX_SERVER") do
 end
 
 config :texne, :pinecone_api_key, Dotenvy.env!("PINECONE_API_KEY")
+config :texne, :pinecone_base_url, Dotenvy.env!("PINECONE_BASE_URL")
 config :texne, :grok_api_key, Dotenvy.env!("GROK_API_KEY")
+config :texne, :filestore_path, Dotenvy.env!("FILESTORE_PATH")
 
 if config_env() == :prod do
   database_url =

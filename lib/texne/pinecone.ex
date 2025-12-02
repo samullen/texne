@@ -6,7 +6,7 @@ defmodule Texne.Pinecone do
 
     url =
       [
-        "https://texne-nisixsu.svc.aped-4627-b74a.pinecone.io",
+        Application.get_env(:texne, :pinecone_base_url),
         "records/namespaces/__default__/search"
       ]
       |> Path.join()
