@@ -12,8 +12,7 @@ npm install --prefix ./assets
 MIX_ENV=prod mix assets.build
 # Build minified assets
 MIX_ENV=prod mix assets.deploy
-mix phx.digest
 
 # Create server script, Build the release, and overwrite the existing release directory
-MIX_ENV=prod mix phx.gen.release
+# MIX_ENV=prod mix phx.gen.release
 MIX_ENV=prod mix release --overwrite
