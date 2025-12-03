@@ -8,7 +8,7 @@ MIX_ENV=prod mix compile
 
 # Compile assets
 # Make sure tailwind and esbuild are installed
-npm install --prefix ./assets
+# npm install --prefix ./assets
 MIX_ENV=prod mix assets.build
 # Build minified assets
 MIX_ENV=prod mix assets.deploy
