@@ -8,7 +8,11 @@
 import Config
 
 config :texne,
-  generators: [timestamp_type: :utc_datetime]
+  generators: [timestamp_type: :utc_datetime],
+  pinecone_api_key: System.get_env("PINECONE_API_KEY"),
+  pinecone_base_url: System.get_env("PINECONE_BASE_URL"),
+  grok_api_key: System.get_env("GROK_API_KEY"),
+  filestore_path: System.get_env("FILESTORE_PATH")
 
 # Configures the endpoint
 config :texne, TexneWeb.Endpoint,
