@@ -4,9 +4,18 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="csrf-token" content={get_csrf_token()} />
-    <.live_title default="Texne" suffix=" · Phoenix Framework">
-      {assigns[:page_title]}
-    </.live_title>
+
+    <meta property="og:title" content="Texne - Samuel Mullen" />
+    <meta property="og:description" content="An AI tool to ask questions against the articles Samuel has written." />
+    <meta property="og:image" content={static_url(TexneWeb.Endpoint, ~p"/images/texne.png")} />
+
+    <meta name="twitter:site" content="@AtomikSnowman">
+    <meta name="twitter:title" content="Texne - Samuel Mullen">
+    <meta name="twitter:description" content="An AI tool to ask questions against the articles Samuel has written.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content={static_url(TexneWeb.Endpoint, ~p"/images/texne.png")} />
+
+    <title>Texne - Samuel Mullen</title>
     <link phx-track-static rel="stylesheet" href={~p"/assets/css/app.css"} />
     <script defer phx-track-static type="text/javascript" src={~p"/assets/js/app.js"}>
     </script>
@@ -25,7 +34,7 @@
           setTheme(localStorage.getItem("phx:theme") || "system");
         }
         window.addEventListener("storage", (e) => e.key === "phx:theme" && setTheme(e.newValue || "system"));
-        
+
         window.addEventListener("phx:set-theme", (e) => setTheme(e.target.dataset.phxTheme));
       })();
     </script>
