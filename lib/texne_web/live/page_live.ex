@@ -4,6 +4,7 @@ defmodule TexneWeb.PageLive do
   alias TexneWeb.PageComponent
   alias Texne.AIs.Grok
 
+  @impl true
   def mount(_params, _session, socket) do
     socket =
       socket
@@ -16,10 +17,12 @@ defmodule TexneWeb.PageLive do
     {:ok, socket}
   end
 
+  @impl true
   def render(assigns) do
     PageComponent.index(assigns)
   end
 
+  @impl true
   def handle_event("submit_question", %{"question" => question}, socket) do
     pid = self()
 
@@ -35,6 +38,7 @@ defmodule TexneWeb.PageLive do
     {:noreply, socket}
   end
 
+  @impl true
   def handle_async(:data_stream, _result, socket) do
     socket =
       socket
