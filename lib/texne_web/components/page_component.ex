@@ -18,7 +18,7 @@ defmodule TexneWeb.PageComponent do
 
     <!-- Question Form -->
       <div class="bg-white shadow-sm border border-gray-200 rounded-md p-6">
-        <.form :let={f} for={@form} class="space-y-4" method="post" phx-submit="submit_question">
+        <.form for={@form} class="space-y-4" method="post" phx-submit="submit_question">
           <div>
             <textarea
               id="question"
