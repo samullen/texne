@@ -10,7 +10,7 @@ defmodule TexneWeb.PageLive do
       socket
       |> assign(:question, nil)
       |> assign(:answer, "")
-      |> assign(:form, to_form(%{question: ""}))
+      |> assign(:form, to_form(%{"question" => ""}))
       |> assign(:data_stream, nil)
       |> assign(:running, false)
 
